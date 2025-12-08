@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+     <link rel="icon" type="svg" href="svg/W_dark.svg" />
+    <title>Walid portfolio</title>
+  </head>
+  <body>
+    <div class="container"></div>
+    <header>
+      <img src="svg/W.svg" alt="Walid logo" />
+      <nav class="navigation">
+        <ul>
+          <li><a href="#aboutMe">About Me</a></li>
+          <li><a href="#MyWorks">My Works</a></li>
+          <li><a href="#contactMe">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <hr />
+
+    <section class="hero">
+      <img class="arrow" src="svg/arrow.svg" alt="arrow" />
+      <div class="heroSub">
+        <h1 class="name">I’m Walid</h1>
+        <h1 class="title">Software Engineer</h1>
+        <div class="heroBtns">
+          <a class="hireMe" href="#contactMe">Hire me</a>
+          <a class="cv" href="Musaab_Kubbi_Software_Engineer.pdf" download
+            >Download CV
+            <img src="svg/download.svg" alt="download button"
+          /></a>
+        </div>
+      </div>
+      <img src="svg/Hero.svg" alt="hero image" class="heroImg" />
+    </section>
+
+    <section class="aboutMe" id="aboutMe">
+      <img
+        src="svg/AboutMe.svg"
+        alt="aboutMe image"
+        class="aboutMeImg"
+      />
+      <div class="textContainer">
+        <div class="textTitle">
+          <h1 class="aboutName">About</h1>
+          <h1 class="aboutTitle">me</h1>
+          <img src="svg/lightbulb.svg" alt="ligh" class="light" />
+        </div>
+        <p class="aboutMeParagraf">
+          Hey, I'm Walid, a software engineer student who loves turning ideas into clean and usable digital products. I work with HTML, CSS, JavaScript and React on the front end, and I also enjoy building things with Java and Python. I'm currently focused on creating modern portfolio websites, landing pages and simple web apps for clients and for my own learning.        </p>
+      </div>
+    </section>
+    <section class="services" id="services"> 
+      <div class="servicesTitle"> 
+        <h1 class="aboutName">My</h1> 
+        <h1 class="aboutTitle">services</h1> 
+      </div> 
+      <div class="servicesGrid"> 
+        <div class="serviceCard"> 
+          <h3>Portfolio websites</h3> 
+          <p>I design and build clean, modern personal websites to showcase your profile, work and contact information.</p> 
+        </div> 
+        <div class="serviceCard"> 
+          <h3>Business landing pages</h3> 
+          <p>I create conversion‑focused landing pages for small businesses, services and local shops.</p> 
+        </div> 
+        <div class="serviceCard"> 
+          <h3>Simple web apps</h3> 
+          <p>I develop small web applications using JavaScript and React for specific needs and ideas.</p> 
+        </div> 
+      </div> 
+    </section>
+    <section class="skills" id="skills">
+       <div class="skillsTitle"> 
+        <h1 class="aboutName">My</h1> 
+        <h1 class="aboutTitle">skills</h1> 
+      </div> 
+      <div class="skillsGrid"> 
+        <div class="skillGroup"> 
+          <h3>Frontend</h3> 
+          <p>HTML, CSS, JavaScript, Responsive Design</p> 
+        </div> 
+        <div class="skillGroup"> 
+          <h3>Backend</h3> 
+          <p>Java, Python, REST APIs</p> 
+        </div> 
+        <div class="skillGroup"> 
+          <h3>Mobile</h3> 
+          <p>Android / Flutter / React Native (remplace par ce que tu maîtrises)</p> 
+        </div> 
+        <div class="skillGroup"> 
+          <h3>Tools</h3> 
+          <p>Git, GitHub, VS Code, Figma, Agile basics</p> 
+        </div> 
+        <div class="skillGroup"> 
+          <h3>Others</h3> 
+          <p>Wordpress, webflow...</p> 
+        </div> 
+      </div> 
+    </section>
+    <section class="works" id="MyWorks">
+      <div class="worksContainer">
+        <div class="projectTitle">
+          <h1 class="aboutName">My recent</h1>
+          <h1 class="aboutTitle">works</h1>
+        </div>
+        <ul class="projectsList">
+  <li class="projectCard">
+      <a href="https://todoliisst.netlify.app/" target="_blank">
+        <img src="imgs/TODO.png" alt="Student Tasks todo app" />
+      </a>
+      <div class="projectInfo">
+        <h3>Student Tasks – Todo List</h3>
+        <p>Todo list to organize study tasks with subject, filters and local storage.</p>
+        <p class="projectTech">HTML · CSS · JavaScript</p>
+        <div class="projectLinks">
+          <a href="https://todoliisst.netlify.app/" target="_blank">Live demo</a>
+          <a href="https://github.com/walidbenyelles/STUDENT-TODO-REPO" target="_blank">Code</a>
+        </div>
+      </div>
+    </li>
+
+  <li class="projectCard">
+    <a href="https://aix-coffee.netlify.app" target="_blank">
+      <img src="imgs/aix-coffee.jpg" alt="Aix Coffee landing page" />
+    </a>
+    <div class="projectInfo">
+      <h3>Aix Coffee – Landing page</h3>
+      <p>Landing page responsive pour un café de spécialité à Aix‑en‑Provence, avec menu, horaires et contact.</p>
+      <p class="projectTech">HTML · CSS · Responsive design</p>
+      <div class="projectLinks">
+        <a href="https://aix-coffee.netlify.app" target="_blank">Live demo</a>
+        <a href="https://github.com/walidbenyelles/aix-coffee-landing" target="_blank">Code</a>
+      </div>
+    </div>
+  </li>
+
+  <li class="projectCard">
+  <a href="https://stuudybuddy.netlify.app/" target="_blank">
+    <img src="imgs/studybuddy.jpg" alt="StudyBuddy landing page" />
+  </a>
+  <div class="projectInfo">
+    <h3>StudyBuddy – Study planner</h3>
+    <p>Landing page concept for a student study planner app, with features, steps and email notify form.</p>
+    <p class="projectTech">HTML · CSS · Responsive design</p>
+    <div class="projectLinks">
+      <a href="https://stuudybuddy.netlify.app/" target="_blank">Live demo</a>
+      <a href="https://github.com/walidbenyelles/studybuddy" target="_blank">Code</a>
+    </div>
+  </div>
+</li>
+
+</ul>
+
+      </div>
+    </section>
+
+    <section class="contactContainer" id="contactMe">
+      <div class="contactTitle">
+        <h1 class="aboutName">Contact</h1>
+        <h1 class="aboutTitle">me</h1>
+      </div>
+      <div class="contact">
+        <div class="emailAndPhone">
+          <img src="svg/Email.svg" alt="email logo" />
+          <a href="mailto:walidwalidwb23@gmail.com"
+            ><h3>walidwalidwb23@gmail.com</h3></a
+          >
+        </div>
+        <div class="emailAndPhone">
+          <img src="svg/phone.svg" alt="phone logo" />
+          <h3>+33753368189</h3>
+        </div>
+      </div>
+      <div class="socialMedia">
+        <a
+          href="https://www.linkedin.com/in/walidben-yelles/"
+          target="_blank"
+          ><img src="svg/linkedin.svg" alt="my linkedin account"
+        /></a>
+        <a href="https://github.com/walidbenyelles" target="_blank"
+          ><img src="svg/github.svg" alt=" my github account"
+        /></a>
+      </div>
+    </section>
+    <hr />
+    <footer>
+      <p>Built by WB.</p>
+    </footer>
+  </body>
+</html>
