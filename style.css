@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
-
+html {
+  scroll-behavior: smooth;
+}
 * {
   margin: 0;
   padding: 0;
@@ -243,7 +245,8 @@ hr {
 /* nouvelle liste de projets */
 
 .projectsList {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   list-style: none;
   align-items: flex-start;
   justify-content: space-between;
@@ -257,6 +260,7 @@ hr {
   backdrop-filter: blur(4px);
   padding: 1rem 1.5rem;
   max-width: 280px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .projectCard img {
@@ -309,6 +313,37 @@ hr {
   text-decoration: underline;
 }
 
+.hiddenProject {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.seeMoreBtn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;          /* bouton pill */
+  border: none;
+  background: #00adb5;           /* adapte à ta couleur principale */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  align-self: center;            /* si tu es en flex/column */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.seeMoreBtn:hover {
+  background: #08c6cf;           /* couleur un peu plus claire/foncée */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.seeMoreBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 /* CONTACT */
 
 .contactContainer {

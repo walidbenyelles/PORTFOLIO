@@ -108,6 +108,22 @@
           <h1 class="aboutTitle">works</h1>
         </div>
         <ul class="projectsList">
+          <li class="projectCard">
+  <a href="https://play.google.com/store/apps/details?id=com.abdennour.quiz&hl=fr" target="Bac Quiz mobile app built with React">
+    <img src="imgs/مرافقك في المراجعة النهائية (2).png" alt="Bac Quiz mobile app" />
+  </a>
+  <div class="projectInfo">
+    <h3>Bac Quiz – باكالوريا كويز</h3>
+<p>Android quiz app to prepare for the Bac exam (15 000+ downloads).</p>
+    <p class="projectTech">React</p>
+    <div class="projectLinks">
+      <a href="https://play.google.com/store/apps/details?id=com.abdennour.quiz&hl=fr" target="_blank">
+        View on Play Store
+      </a>
+    </div>
+  </div>
+</li>
+
   <li class="projectCard">
       <a href="https://todoliisst.netlify.app/" target="_blank">
         <img src="imgs/TODO.png" alt="Student Tasks todo app" />
@@ -138,7 +154,7 @@
     </div>
   </li>
 
-  <li class="projectCard">
+  <li class="projectCard hiddenProject">
   <a href="https://stuudybuddy.netlify.app/" target="_blank">
     <img src="imgs/studybuddy.jpg" alt="StudyBuddy landing page" />
   </a>
@@ -153,8 +169,10 @@
   </div>
 </li>
 
-</ul>
 
+
+</ul>
+<button id="seeMoreBtn" class="seeMoreBtn">Voir plus</button>
       </div>
     </section>
 
@@ -192,3 +210,36 @@
     </footer>
   </body>
 </html>
+<script>
+  const seeMoreBtn = document.getElementById("seeMoreBtn");
+  const hiddenProjects = document.querySelectorAll(".hiddenProject");
+  let expanded = false;
+
+  seeMoreBtn.addEventListener("click", () => {
+    expanded = !expanded;
+
+    hiddenProjects.forEach(card => {
+      if (expanded) {
+        // afficher avec animation
+        card.style.display = "block";
+
+        // laisser le temps au browser d'appliquer display:block
+        requestAnimationFrame(() => {
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        });
+      } else {
+        // cacher avec animation inverse
+        card.style.opacity = "0";
+        card.style.transform = "translateY(10px)";
+
+        // attendre la fin de la transition avant de mettre display:none
+        setTimeout(() => {
+          card.style.display = "none";
+        }, 300); // même durée que la transition CSS
+      }
+    });
+
+    seeMoreBtn.textContent = expanded ? "Voir moins" : "Voir plus";
+  });
+</script>
