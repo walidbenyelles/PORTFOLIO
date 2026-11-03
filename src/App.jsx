@@ -638,19 +638,26 @@ function Contact({ t }) {
   const [submitting, setSubmitting] = useState(false);
 
   const socials = [
-    {
-      name: 'GitHub',
-      url: profile.github,
-      Icon: Github
-    },
-    ...(profile.linkedin
-      ? [{
-          name: 'LinkedIn',
-          url: profile.linkedin,
-          Icon: Linkedin
-        }]
-      : [])
-  ];
+  {
+    name: 'GitHub',
+    url: profile.github,
+    Icon: Github
+  },
+  ...(profile.linkedin
+    ? [{
+        name: 'LinkedIn',
+        url: profile.linkedin,
+        Icon: Linkedin
+      }]
+    : []),
+  ...(profile.email
+    ? [{
+        name: profile.email,
+        url: `mailto:${profile.email}`,
+        Icon: Mail
+      }]
+    : [])
+];
 
   async function handleSend(event) {
     event.preventDefault();
@@ -714,8 +721,8 @@ function Contact({ t }) {
                 <a
                   key={name}
                   href={url}
-                  target="_blank"
-                  rel="noreferrer"
+                  target={name === 'Email' ? undefined : '_blank'}
+                  rel={name === 'Email' ? undefined : 'noopener noreferrer'}
                 >
                   <Icon size={21} />
                   {name}
@@ -723,6 +730,7 @@ function Contact({ t }) {
                 </a>
               ))}
             </div>
+            
           </Reveal>
         </div>
 
