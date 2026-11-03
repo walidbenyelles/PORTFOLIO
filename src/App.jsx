@@ -143,8 +143,10 @@ const content = {
     name: 'Ton nom', yourEmail: 'Ton email', subject: 'Sujet', message: 'Ton message',
     placeholderName: 'Comment tu t’appelles ?', placeholderEmail: 'nom@exemple.com',
     placeholderSubject: 'À propos de...', placeholderMessage: 'Parle-moi de ton idée...',
-    send: 'Préparer le message',
-    sent: 'Ton application mail va s’ouvrir pour envoyer ce message.',
+    send: 'Envoyer le message',
+    sending: 'Envoi en cours…',
+    sent: 'Message envoyé ! Je te répondrai dès que possible.',
+    sendError: 'Impossible d’envoyer le message. Réessaie plus tard ou écris-moi par email.',
     copied: 'Message copié ! Ajoute ton email dans src/config.js pour activer l’envoi direct.',
     copyError: 'Ajoute ton email dans src/config.js pour activer l’envoi.',
     connect: 'Retrouve-moi aussi ici',
@@ -622,54 +624,238 @@ function Journey({ t }) {
   );
 }
 
-function Contact({ t, lang }) {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [notice, setNotice] = useState('');
-  const socials = [{ name: 'GitHub', url: profile.github, Icon: Github }, ...(profile.linkedin ? [{ name: 'LinkedIn', url: profile.linkedin, Icon: Linkedin }] : [])];
 
-  async function handleSend(e) {
-    e.preventDefault();
-    setNotice('');
-    const body = `${lang === 'fr' ? 'De' : 'From'}: ${form.name} <${form.email}>\n\n${form.message}`;
-    if (profile.email) {
-      window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`;
-      setNotice(t.sent);
-    } else {
-      try {
-        await navigator.clipboard.writeText(`${form.subject}\n\n${body}`);
-        setNotice(t.copied);
-      } catch {
-        setNotice(t.copyError);
+function Contact({ t }) {
+  const emptyForm = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  };
+
+  const [form, setForm] = useState(emptyForm);
+  const [notice, setNotice] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const socials = [
+    {
+      name: 'GitHub',
+      url: profile.github,
+      Icon: Github
+    },
+    ...(profile.linkedin
+      ? [{
+          name: 'LinkedIn',
+          url: profile.linkedin,
+          Icon: Linkedin
+        }]
+      : [])
+  ];
+
+  async function handleSend(event) {
+    event.preventDefault();
+
+    if (submitting) return;
+
+    const formData = new FormData(event.currentTarget);
+
+    setNotice(null);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (!response.ok) {
+        throw new Error(`Netlify Forms: ${response.status}`);
       }
+
+      setNotice({
+        type: 'success',
+        message: t.sent
+      });
+
+      setForm(emptyForm);
+
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+
+      setNotice({
+        type: 'error',
+        message: t.sendError
+      });
+
+    } finally {
+      setSubmitting(false);
     }
   }
 
   return (
     <section className="section contact-section" id="contact">
       <div className="container-wide contact-layout">
+
         <div className="contact-left">
-          <SectionHeading eyebrow={t.contactEyebrow} first={t.contactTitle1} second={t.contactTitle2} desc={t.contactText}/>
+          <SectionHeading
+            eyebrow={t.contactEyebrow}
+            first={t.contactTitle1}
+            second={t.contactTitle2}
+            desc={t.contactText}
+          />
+
           <Reveal className="social-links" delay={0.1}>
             <p>{t.connect}</p>
-            <div>{socials.map(({ name, url, Icon }) => <a key={name} href={url} target="_blank" rel="noreferrer"><Icon size={21}/>{name}<ArrowUp className="tilt-arrow" size={15}/></a>)}</div>
+            <div>
+              {socials.map(({ name, url, Icon }) => (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Icon size={21} />
+                  {name}
+                  <ArrowUp className="tilt-arrow" size={15} />
+                </a>
+              ))}
+            </div>
           </Reveal>
         </div>
+
         <Reveal delay={0.12} className="form-card">
-          <form onSubmit={handleSend}>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={handleSend}
+          >
+
+            <input
+              type="hidden"
+              name="form-name"
+              value="contact"
+            />
+
+            <p
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: '-10000px',
+                width: 1,
+                height: 1,
+                overflow: 'hidden'
+              }}
+            >
+              <label>
+                Ne pas remplir ce champ
+                <input
+                  type="text"
+                  name="bot-field"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </label>
+            </p>
+
             <div className="form-row">
-              <label>{t.name}<input required type="text" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} placeholder={t.placeholderName}/></label>
-              <label>{t.yourEmail}<input required type="email" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} placeholder={t.placeholderEmail}/></label>
+              <label>
+                {t.name}
+                <input
+                  required
+                  name="name"
+                  type="text"
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm({ ...form, name: e.target.value })
+                  }
+                  placeholder={t.placeholderName}
+                />
+              </label>
+
+              <label>
+                {t.yourEmail}
+                <input
+                  required
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) =>
+                    setForm({ ...form, email: e.target.value })
+                  }
+                  placeholder={t.placeholderEmail}
+                />
+              </label>
             </div>
-            <label>{t.subject}<input required type="text" value={form.subject} onChange={(e) => setForm({...form, subject: e.target.value})} placeholder={t.placeholderSubject}/></label>
-            <label>{t.message}<textarea required rows={5} value={form.message} onChange={(e) => setForm({...form, message: e.target.value})} placeholder={t.placeholderMessage}/></label>
-            <button className="gradient-button send-button" type="submit">{t.send}<Send size={18}/></button>
-            {notice && <p className="form-notice" role="status"><Check size={17}/>{notice}</p>}
+
+            <label>
+              {t.subject}
+              <input
+                required
+                name="subject"
+                type="text"
+                value={form.subject}
+                onChange={(e) =>
+                  setForm({ ...form, subject: e.target.value })
+                }
+                placeholder={t.placeholderSubject}
+              />
+            </label>
+
+            <label>
+              {t.message}
+              <textarea
+                required
+                name="message"
+                rows={5}
+                value={form.message}
+                onChange={(e) =>
+                  setForm({ ...form, message: e.target.value })
+                }
+                placeholder={t.placeholderMessage}
+              />
+            </label>
+
+            <button
+              className="gradient-button send-button"
+              type="submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
+              {submitting ? t.sending : t.send}
+              <Send size={18} />
+            </button>
+
+            {notice && (
+              <p
+                className="form-notice"
+                role={notice.type === 'error' ? 'alert' : 'status'}
+                style={
+                  notice.type === 'error'
+                    ? { color: '#d94b4b' }
+                    : undefined
+                }
+              >
+                {notice.type === 'error'
+                  ? <X size={17} />
+                  : <Check size={17} />
+                }
+                {notice.message}
+              </p>
+            )}
+
           </form>
         </Reveal>
+
       </div>
     </section>
   );
 }
+
 
 function Footer({ t, theme }) {
   return (
@@ -715,7 +901,7 @@ export default function App() {
         <Skills t={t}/>
         <Projects t={t}/>
         <Journey t={t}/>
-        <Contact t={t} lang={lang}/>
+        <Contact t={t}/>
       </main>
       <Footer t={t} theme={theme} />
     </>
