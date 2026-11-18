@@ -88,7 +88,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 
-/* Header closely follows the provided reference screenshot. */
+
 
 .site-header { height: 100px; position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 93%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(20px); }
 
@@ -430,7 +430,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 25px; }
 
-/* Logo du footer : taille reduite et responsive */
+/* Logo du footer */
 .footer-brand {
   display: inline-flex;
   align-items: center;
@@ -605,7 +605,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .footer-brand { width: 70px; }
 }
 
-/* Carrousel horizontal : une photo visible a la fois */
+/* une photo visible a la fois */
 .project-gallery { display: block; position: relative; overflow: hidden; }
 .project-gallery-track {
   position: absolute;
