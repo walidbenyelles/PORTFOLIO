@@ -486,7 +486,7 @@ function ProjectArt({ type, title, images = [] }) {
     setActiveIndex(Math.max(0, Math.min(position, photos.length - 1)));
   }
 
-  // Sans photo, on laisse exactement l'illustration originale.
+
   if (photos.length === 0) {
     return (
       <div className={`project-art art-${type}`} aria-hidden="true">
@@ -571,7 +571,7 @@ function ProjectArt({ type, title, images = [] }) {
 }
 
 function Projects({ t }) {
-  // Les 4 premiers projets sont visibles par défaut.
+ 
   const [showAll, setShowAll] = useState(false);
   const hasMore = t.projects.length > 4;
   const visibleProjects = showAll ? t.projects : t.projects.slice(0, 4);
@@ -599,7 +599,7 @@ function Projects({ t }) {
           ))}
         </div>
 
-        {/* Ne montrer le bouton que lorsqu'il existe un 5e projet. */}
+        {}
         {hasMore && (
           <div className="all-projects-row">
             <button
