@@ -62,6 +62,14 @@ const projectPhotos = {
         '/images/projets/bac quiz/1.png',
 
   ],
+  
+'Résidence Lydia': [
+  '/images/projets/residence-lydia/accueil.png',
+  '/images/projets/residence-lydia/apartment.png',
+  '/images/projets/residence-lydia/carteApartment.png',
+  '/images/projets/residence-lydia/tlemcen.png',
+],
+
   Portfolio: [
   '/images/projets/portfolio/1.png',
   '/images/projets/portfolio/2.png',
@@ -124,8 +132,18 @@ const content = {
         desc: 'Application de quiz avec plusieurs matières et niveaux, pensée pour apprendre et s’entraîner de manière interactive.',
         tags: ['Web', 'Quiz', 'Éducation'], art: 'quiz', featured: true ,url:'https://play.google.com/store/apps/details?id=com.abdennour.quiz&hl=fr'
       },
+      
+{
+  no: '05',title: 'Résidence Lydia',type: 'Projet freelance · Site vitrine',
+  desc: 'Conception et développement d’un site vitrine professionnel pour une résidence de trois appartements touristiques à Tlemcen, en Algérie. Interface responsive et bilingue FR/EN, galeries photos interactives, intégration des annonces et avis Airbnb, contact WhatsApp et déploiement sur Cloudflare Workers.',
+  tags: ['React','JavaScript','Vite','CSS3','Cloudflare',],
+  art: 'residence',
+  url: 'https://github.com/walidbenyelles/residence-lydia',
+  siteUrl: 'https://residence-lydia.wb.workers.dev',
+},
+
       {
-        no: '05', title: 'Portfolio', type: 'Site web personnel',
+        no: '06', title: 'Portfolio', type: 'Site web personnel',
         desc: 'Portfolio personnel responsive développé avec React, Vite et Framer Motion. Présentation de mes projets, compétences et parcours, avec un mode sombre, deux langues et des galeries de captures interactives.',
         tags: ['React', 'Vite', 'Framer Motion'], art: 'portfolio', isPortfolio: true, url: 'https://github.com/walidbenyelles/PORTFOLIO'
       },
@@ -188,7 +206,8 @@ const content = {
       { no: '02', title: 'EduPlan', type: 'Full-stack application', desc: 'Web platform for managing and organizing educational activities, built as a complete database-backed application.', tags: ['Flask', 'SQLAlchemy', 'HTML / CSS'], art: 'planner', url:'https://github.com/walidbenyelles/EduPlan' },
       { no: '03', title: 'EtuNav', type: 'Team university project', desc: 'Collaborative software project organized around sprints with version control and tracking on GitLab.', tags: ['Teamwork', 'GitLab', 'Agile'], art: 'navigation' , url:'https://github.com/walidbenyelles/ETUNAV' },
       { no: '04', title: 'Bac Quiz', type: 'Educational application', desc: 'Interactive quiz app covering several subjects and levels, designed to make learning more engaging.', tags: ['Web', 'Quiz', 'Education'], art: 'quiz', featured: true ,url:'https://play.google.com/store/apps/details?id=com.abdennour.quiz&hl=fr'},
-      { no: '05', title: 'Portfolio', type: 'Personal website', desc: 'Responsive personal portfolio built with React, Vite and Framer Motion. Showcases my projects, skills and education, with dark mode, two languages and interactive screenshot galleries.', tags: ['React', 'Vite', 'Framer Motion'], art: 'portfolio', isPortfolio: true, url: '#home' },
+      {no: '05',title: 'Résidence Lydia',type: 'Freelance Project · Business Website',desc: 'Designed and developed a professional website for a client operating three holiday apartments in Tlemcen, Algeria. Built a responsive bilingual interface (French/English), interactive photo galleries, Airbnb listing and review integrations, WhatsApp contact links, and deployed the website using Cloudflare Workers.',tags: ['React','JavaScript','Vite','CSS3','Cloudflare',],art: 'residence',url: 'https://github.com/walidbenyelles/residence-lydia',siteUrl: 'https://residence-lydia.wb.workers.dev',},
+      { no: '06', title: 'Portfolio', type: 'Personal website', desc: 'Responsive personal portfolio built with React, Vite and Framer Motion. Showcases my projects, skills and education, with dark mode, two languages and interactive screenshot galleries.', tags: ['React', 'Vite', 'Framer Motion'], art: 'portfolio', isPortfolio: true, url: '#home' },
     ],
     journeyEyebrow: '04 / EDUCATION', journeyTitle1: 'My journey,', journeyTitle2: 'one step at a time.',
     journeyIntro: 'An academic path focused on hands-on experience and continuous discovery.', current: 'Current',
